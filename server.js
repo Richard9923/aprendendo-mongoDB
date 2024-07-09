@@ -71,33 +71,20 @@ app.put('/api/product/:id', async (req, res) => {
     }
 })
 
-// app.delete('/api/product/:id', async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         const product = await Product.findByIdAndDelete(id);
-//         if (!product) {
-//             res.status(404).json({message: "Product not found"})
-//         }
-//     res.status(200).json({message: "Product deleted."})
-//     } catch (error) {
-//         res.status(500).json({message: error.message});
-//     }
-// })
-
 app.delete('/api/product/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(`Attempting to delete product with id: ${id}`); // Log de depuração
         const product = await Product.findByIdAndDelete(id);
         if (!product) {
-            return res.status(404).json({ message: "Product not found" });
+            res.status(404).json({message: "Product not found"})
         }
-        res.status(200).json({ message: "Product deleted successfully" });
+    res.status(200).json({message: "Product deleted."})
     } catch (error) {
-        console.error(`Error deleting product: ${error.message}`); // Log de erro
         res.status(500).json({message: error.message});
     }
-});
+})
+
+
 
 
 mongoose.connect(`mongodb+srv://${user}:${password}@backenddb.dgjbbik.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB`)
