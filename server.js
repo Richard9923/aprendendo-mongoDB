@@ -10,3 +10,6 @@ app.listen(PORT, () => {
     console.log(`The server is running on PORT: ${PORT}`)
 })
 
+app.get('/', (req, res) => {
+    res.send('Hello from node API');
+})
